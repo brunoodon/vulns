@@ -13,7 +13,7 @@ url_nvd = "https://services.nvd.nist.gov/rest/json/cves/1.0?keyword=nginx&isExac
 #url_nvd = "https://services.nvd.nist.gov/rest/json/cves/1.0?keyword=elasticsearch&modStartDate="+today+"T00:00:00:000 UTC-03:00"
 #url_nvd = "https://services.nvd.nist.gov/rest/json/cves/1.0?cpeMatchString=cpe:2.3:o:apache&cvssV3Severity=CRITICAL"
 #url_nvd = "https://services.nvd.nist.gov/rest/json/cves/1.0?keyword=dns+server&isExactMatch=true&"
-url_post = "http://elastic.howtoonline.com.br:9200/nvd-"+today+"/_doc"
+url_post = "http://elastisearch_host:9200/nvd-"+today+"/_doc"
 headers_post = {'Content-Type': 'application/json'}
 r = requests.get(url_nvd, verify=False)
 print(r.status_code)

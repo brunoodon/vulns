@@ -10,7 +10,7 @@ import time
 today=str(datetime.date.today())
 
 url_nvd = "https://services.nvd.nist.gov/rest/json/cves/1.0?keyword=cisco+ios&isExactMatch=true&modStartDate=2021-01-01T00:00:00:000 UTC-03:00&cvssV3Severity=CRITICAL"
-url_post = "http://elastic.howtoonline.com.br:9200/nvd-"+today+"/_doc"
+url_post = "http://elastisearch_host:9200/nvd-"+today+"/_doc"
 headers_post = {'Content-Type': 'application/json'}
 r = requests.get(url_nvd, verify=False)
 print(r.status_code)

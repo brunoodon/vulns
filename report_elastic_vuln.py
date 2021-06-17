@@ -1,13 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Tue Feb  2 21:45:22 2021
-
-Com base no nome de um report o script faz a busca do ID e efetua o download do mesmo,
-salvando o resultado tanto em csv no disco quanto em um dataframe para posterior processamento
-
-@author: kb1a
-"""
-
 from pymisp import (MISPEvent, MISPSighting, MISPTag, MISPOrganisation, MISPObject)
 from pymisp import MISPEvent, MISPObject, PyMISP, ExpandedPyMISP, MISPSharingGroup
 import argparse
@@ -22,10 +12,10 @@ import json
 today=str(datetime.date.today())
 
 from elasticsearch import Elasticsearch
-es = Elasticsearch(['http://elastic.howtoonline.com.br:9200'])
+es = Elasticsearch(['http://elastisearch_host:9200'])
 r = es.search(index="nvd-"+today+"", body={"size": 500, "query": {"match": {"Product": "Elasticsearch"}}})
-misp_url="https://misp.howtoonline.com.br"
-misp_key="0NUVtsv4Z3bnjLxfM8sEOzH3XgzsPitT5CrYYmwT"
+misp_url="https://misp_site"
+misp_key="misp_authkey"
 misp_verifycert = False
 for i in r['hits']['hits']:
   assigner = i['_source']['Assigner']
@@ -44,8 +34,8 @@ for i in r['hits']['hits']:
   scope = i["_source"]["Scope"]
   severity = i["_source"]["Severity"]
   user_interaction = i["_source"]["User_Interaction"]
-  url = "https://misp.howtoonline.com.br"
-  key = "0NUVtsv4Z3bnjLxfM8sEOzH3XgzsPitT5CrYYmwT"
+  url = "https://misp_site"
+  key = "misp_authkey"
   misp_verifycert = False
   misp = ExpandedPyMISP(url, key, misp_verifycert)
   event = MISPEvent()

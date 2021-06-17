@@ -1,13 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Tue Feb  2 21:45:22 2021
-
-Com base no nome de um report o script faz a busca do ID e efetua o download do mesmo,
-salvando o resultado tanto em csv no disco quanto em um dataframe para posterior processamento
-
-@author: kb1a
-"""
-
 from pymisp import (MISPEvent, MISPSighting, MISPTag, MISPOrganisation, MISPObject)
 from pymisp import MISPEvent, MISPObject, PyMISP, ExpandedPyMISP, MISPSharingGroup
 import argparse
@@ -23,7 +13,7 @@ import json
 today=str(datetime.date.today())
 
 from elasticsearch import Elasticsearch
-es = Elasticsearch(['http://elastic.howtoonline.com.br:9200'])
+es = Elasticsearch(['http://elastisearch_host:9200'])
 r = es.search(index="nvd-"+today+"", body={"size": 500, "query": {"match": {"Product": "CISCO IOS"}}})
 #misp_url="http://stark"
 #misp_key="wADgKpuZNLcBbFDcKlB6xqkGCUYOZFMU6e5UK3ta"
